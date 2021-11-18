@@ -87,7 +87,12 @@
     </section>
   </main>
 
+
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "fd77892cef4e41b78414f1654ba3ab18"});
+
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -102,6 +107,115 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    
+    errorBtns[0].addEventListener('click', () => {
+      console.log("Lab 9 log message");
+    });
+
+    errorBtns[1].addEventListener('click', () => {
+      console.error("Lab 9 error message");
+    });
+
+    errorBtns[2].addEventListener('click', () => {
+      console.count("Lab 9 count message")
+    })
+
+    errorBtns[3].addEventListener('click', () => {
+      console.warn("Lab 9 warning message");
+    });
+
+    errorBtns[4].addEventListener('click', () => {
+      const a = 3;
+      const errorMsg = "3 is not even";
+      console.assert(a % 2 == 0, {a:a, errorMsg: errorMsg});
+    });
+
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+    });
+
+    errorBtns[6].addEventListener('click', () => {
+      console.dir(document.head);
+    });
+
+    errorBtns[7].addEventListener('click', () =>{
+      console.dirxml(document);
+    })
+
+    errorBtns[8].addEventListener('click', () =>{
+      console.group("Lab 9 groupStart message");
+    });
+
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd();
+    });
+
+    errorBtns[10].addEventListener('click', () =>{
+      const people = [["Edwin", "Lau" ], ["Thomas", "Powell"], ["Miles", "Jones"]];
+      console.table(people);
+    });
+
+    errorBtns[11].addEventListener('click', () => {
+      console.time('timer');
+    });
+
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd('timer');
+    });
+
+    errorBtns[13].addEventListener('click', () => {
+      var myFunc = function() {
+        myOtherFunction();
+      }
+
+      var myOtherFunction = function() {
+        console.trace();
+      }
+
+      myFunc();
+
+    });
+
+    errorBtns[14].addEventListener('click', () => {
+      const error = new Error("Lab 9 Global Error Message");
+      throw error;
+    })
+
+    try {
+      errorBtns[100].addEventListener('click', () => {
+          console.log("Button 100 has been clicked");
+      });
+    } catch (err) {
+      console.log('Button 100 does not exist');
+    } finally {
+      console.log('Block of code to be executed regardless of the try/catch result');
+    }  
+
+    class Step4Error extends Error {
+      constructor(message){
+        super(message);
+        this.name = "Step4Error";
+      }
+    }
+
+    function Step4Test()
+    {
+      throw new Step4Error("Custom Step 4 Error!");
+    }
+
+    try{
+      Step4Test();
+    } catch(err) {
+      console.log(err.message);
+      console.log(err.name);
+    }
+
+    if (window.onerror)
+    {
+      TrackJS.track(window.onerror)
+    }
+                        
+
   </script>
 </body>
 
